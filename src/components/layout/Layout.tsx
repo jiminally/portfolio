@@ -6,7 +6,7 @@ type LayoutProps = { children: ReactNode }
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-svh bg-landing">
+    <div className="min-h-svh">
       <a
         href="#main-content"
         className="fixed top-3 left-6 z-[60] -translate-y-24 rounded-lg bg-accent-orange px-4 py-3 text-text-on-light focus:translate-y-0"
