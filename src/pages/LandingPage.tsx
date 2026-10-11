@@ -22,7 +22,7 @@ export default function LandingPage() {
     <>
       {phase !== 'intro' && (
         <div inert={phase !== 'home'}>
-          <HomePage />
+          <HomePage ready={phase === 'home'} />
         </div>
       )}
       <AnimatePresence onExitComplete={() => setPhase('home')}>
