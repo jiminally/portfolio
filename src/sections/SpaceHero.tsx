@@ -1,3 +1,4 @@
+import { hero } from '@/data/hero'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
 import AltitudeLabel from '@/components/ui/AltitudeLabel'
 import InteractiveRobot from '@/components/robot/InteractiveRobot'
@@ -47,23 +48,32 @@ export default function SpaceHero({ ready = true }: SpaceHeroProps) {
           id="space-title"
           className="font-display text-[clamp(40px,5vw,64px)] leading-[1.2] font-normal tracking-[-1.5px]"
         >
-          <motion.span custom={1} variants={reveal} className="block">
-            오래 떠돌았지만,
-          </motion.span>
-          <motion.span custom={2} variants={reveal} className="block">
-            이제 <span className="text-accent-orange">여기</span>에
-          </motion.span>
-          <motion.span custom={3} variants={reveal} className="block">
-            내려앉았어요
-          </motion.span>
+          {hero.copy.map((line, index) => (
+            <motion.span
+              key={index}
+              custom={index + 1}
+              variants={reveal}
+              className="block"
+            >
+              {line.map((part, partIndex) => (
+                <span
+                  key={partIndex}
+                  className={
+                    part.highlighted ? 'text-accent-orange' : undefined
+                  }
+                >
+                  {part.text}
+                </span>
+              ))}
+            </motion.span>
+          ))}
         </h1>
         <motion.p
           custom={4}
           variants={reveal}
           className="max-w-[480px] font-sans text-[19px] leading-[1.75] text-[#DAD6F5]"
         >
-          느리게 배우지만 한 번 붙잡으면 끝까지 파고드는, 사람들과 함께 굴러가는
-          걸 좋아하는 개발자 남지민입니다.
+          {hero.introduction}
         </motion.p>
         <motion.p
           custom={5}
