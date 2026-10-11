@@ -484,3 +484,16 @@
     scroll-behavior: auto !important;
   }
 }
+
+.project-orb {
+  background: radial-gradient(
+    circle at 30% 26%,
+    white 0%,
+    color-mix(in srgb, var(--orb-color) 30%, white) 18%,
+    var(--orb-color) 48%,
+    color-mix(in srgb, var(--orb-color) 55%, #1f1b4d) 100%
+  );
+  box-shadow:
+    inset -4px -6px 10px rgb(31 27 77 / 18%),
+    0 8px 18px color-mix(in srgb, var(--orb-color) 35%, transparent);
+}
