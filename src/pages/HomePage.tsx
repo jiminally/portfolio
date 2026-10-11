@@ -1,3 +1,4 @@
+import ActivityTimeline from '@/sections/ActivityTimeline'
 import Projects from '@/sections/Projects'
 import ExplorationLog from '@/sections/ExplorationLog'
 import SpaceHero from '@/sections/SpaceHero'
@@ -13,6 +14,7 @@ export default function HomePage({ ready = true }: HomePageProps) {
         <SpaceHero ready={ready} />
         <ExplorationLog />
         <Projects />
+        <ActivityTimeline />
         <section
           id="earth"
           tabIndex={-1}

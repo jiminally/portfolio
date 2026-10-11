@@ -40,26 +40,33 @@ export default function Header() {
         </a>
         <nav
           aria-label="주요 메뉴"
-          className="flex items-center gap-1 font-mono text-sm sm:gap-2"
+          className="flex items-center gap-0 font-mono text-xs sm:gap-2 sm:text-sm"
         >
           <a
             href="#log"
             onClick={(event) => navigate(event, 'log')}
-            className="rounded-full px-3 py-3 text-text-on-dark hover:text-accent-orange sm:px-3.5"
+            className="rounded-full px-2 py-3 whitespace-nowrap text-text-on-dark hover:text-accent-orange sm:px-3.5"
           >
             탐사 일지
           </a>
           <a
             href="#clouds"
             onClick={(event) => navigate(event, 'clouds')}
-            className="rounded-full px-3 py-3 text-text-on-dark hover:text-accent-orange sm:px-3.5"
+            className="rounded-full px-2 py-3 whitespace-nowrap text-text-on-dark hover:text-accent-orange sm:px-3.5"
           >
             프로젝트
           </a>
           <a
+            href="#timeline"
+            onClick={(event) => navigate(event, 'timeline')}
+            className="rounded-full px-2 py-3 whitespace-nowrap text-text-on-dark hover:text-accent-orange sm:px-3.5"
+          >
+            활동 기록
+          </a>
+          <a
             href="#earth"
             onClick={(event) => navigate(event, 'earth')}
-            className="rounded-full bg-accent-orange px-4 py-3 whitespace-nowrap text-text-on-light glow-btn sm:px-[18px]"
+            className="rounded-full bg-accent-orange px-3 py-3 whitespace-nowrap text-text-on-light glow-btn sm:px-[18px]"
           >
             착륙 지점
           </a>
