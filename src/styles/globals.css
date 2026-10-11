@@ -23,6 +23,8 @@
 @layer base {
   /* Tailwind Preflight supplies the box-sizing, margin and form resets. */
   html {
+    --header-height: 132px;
+    scroll-behavior: smooth;
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -59,6 +61,24 @@
   :focus-visible {
     outline: 3px solid currentColor;
     outline-offset: 5px;
+  }
+}
+
+@layer components {
+  .landing-section,
+  #main-content {
+    scroll-margin-top: calc(var(--header-height) + 24px);
+  }
+}
+
+/* Override the glass utility to retain contrast over light sections. */
+.site-header[data-scrolled='true'] {
+  background-color: rgb(32 27 72 / 90%);
+}
+
+@media (min-width: 640px) {
+  html {
+    --header-height: 96px;
   }
 }
 
