@@ -497,3 +497,23 @@
     inset -4px -6px 10px rgb(31 27 77 / 18%),
     0 8px 18px color-mix(in srgb, var(--orb-color) 35%, transparent);
 }
+
+@keyframes flag-wave {
+  0%,
+  100% {
+    transform: skewY(0deg) scaleX(1);
+  }
+  50% {
+    transform: skewY(-5deg) scaleX(0.94);
+  }
+}
+.landing-flag-wave {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: flag-wave 2.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-flag-wave {
+    animation: none !important;
+  }
+}
