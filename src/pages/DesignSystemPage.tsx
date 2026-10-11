@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Robot, { type RobotProps } from '@/components/robot/Robot'
+import InteractiveRobot from '@/components/robot/InteractiveRobot'
 
 const palette = [
   { name: 'Orange', value: '#F2A65A', background: 'bg-accent-orange' },
@@ -21,6 +23,8 @@ const atmosphere = [
 
 // Reference screen for the design tokens introduced in issue #2.
 function DesignSystemPage() {
+  const [robotMood, setRobotMood] =
+    useState<NonNullable<RobotProps['mood']>>('idle')
   const [signalSent, setSignalSent] = useState(false)
 
   return (
@@ -136,6 +140,66 @@ function DesignSystemPage() {
               사용합니다.
             </p>
           </article>
+        </div>
+      </section>
+      <section aria-labelledby="robot-title" className="mt-14">
+        <h2 id="robot-title" className="mb-6 text-3xl">
+          04. 여행을 함께할 로봇
+        </h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {(['sleep', 'idle', 'happy'] as const).flatMap((mood) =>
+            (['rest', 'wave'] as const).map((pose) => (
+              <figure
+                key={`${mood}-${pose}`}
+                className="flex flex-col items-center gap-6 rounded-3xl p-6 glass-dark"
+              >
+                <Robot
+                  mood={mood}
+                  pose={pose}
+                  antennaColor={pose === 'rest' ? 'mint' : 'orange'}
+                  size={180}
+                />
+                <figcaption className="font-mono text-sm">
+                  {mood} / {pose}
+                </figcaption>
+              </figure>
+            )),
+          )}
+        </div>
+        <div className="mt-6 rounded-3xl p-6 glass-dark">
+          <h3 className="mb-4 text-2xl">로봇에게 인사해 보세요</h3>
+          <p className="mb-6">
+            상태를 바꾸면 색과 눈이 전환됩니다. 로봇을 클릭하거나 Enter·Space
+            키로 대사를 확인하세요.
+          </p>
+          <div
+            role="group"
+            aria-label="로봇 기분"
+            className="mb-8 flex flex-wrap gap-3"
+          >
+            {(['sleep', 'idle', 'happy'] as const).map((mood) => (
+              <button
+                key={mood}
+                type="button"
+                aria-pressed={robotMood === mood}
+                onClick={() => setRobotMood(mood)}
+                className="rounded-full border border-accent-mint px-4 py-2 font-mono text-sm aria-pressed:bg-accent-mint aria-pressed:text-text-on-light"
+              >
+                {mood}
+              </button>
+            ))}
+          </div>
+          <InteractiveRobot
+            mood={robotMood}
+            pose="wave"
+            antennaColor="orange"
+            floating
+            lines={[
+              '안녕! 지구의 신호를 따라왔어요.',
+              '천천히 가도 괜찮아요. 함께 가요!',
+              '다음에는 어떤 곳을 탐험할까요?',
+            ]}
+          />
         </div>
       </section>
     </main>

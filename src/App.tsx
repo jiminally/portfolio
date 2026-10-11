@@ -1,11 +1,10 @@
-import DesignSystemPage from '@/pages/DesignSystemPage'
-import HomePage from '@/pages/HomePage'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { routes } from '@/routes'
+
+const router = createBrowserRouter(routes)
 
 function App() {
-  // Keep the reference screen accessible until application routing is introduced.
-  const showDesignSystem =
-    new URLSearchParams(window.location.search).get('view') === 'design-system'
-  return showDesignSystem ? <DesignSystemPage /> : <HomePage />
+  return <RouterProvider router={router} />
 }
 
 export default App
