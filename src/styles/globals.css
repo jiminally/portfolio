@@ -21,6 +21,16 @@
 }
 
 @layer base {
+  html,
+  body {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Tailwind Preflight supplies the box-sizing, margin and form resets. */
   html {
     --header-height: 132px;
@@ -212,6 +222,149 @@
   .robot-blink,
   .robot-bounce,
   .speech-pop {
+    animation: none !important;
+  }
+}
+
+/* Sleep and lit artwork remain mounted; only opacity changes during startup. */
+.robot-svg .robot-power-part {
+  transition: opacity 350ms ease;
+}
+.robot-power-on > .robot-power-part {
+  opacity: 1;
+}
+.robot-power-off > .robot-power-part {
+  opacity: 0;
+}
+.robot-svg[data-sleep='true'] .robot-power-on > .robot-power-part {
+  opacity: 0;
+}
+.robot-svg[data-sleep='true'] .robot-power-off > .robot-power-part {
+  opacity: 1;
+}
+.robot-svg[data-sleep='false'] .robot-power-part[data-part='antenna'] {
+  transition-duration: 600ms;
+  transition-delay: 0ms;
+}
+.robot-svg[data-sleep='false'] .robot-power-part[data-part='body'] {
+  transition-duration: 1800ms;
+  transition-delay: 500ms;
+}
+.robot-svg[data-sleep='false'] .robot-power-part[data-part='light'] {
+  transition-duration: 900ms;
+  transition-delay: 1600ms;
+}
+.robot-svg[data-sleep='false'] .robot-power-part[data-part='eyes'] {
+  transition-duration: 1200ms;
+  transition-delay: 2200ms;
+}
+
+.intro-screen {
+  height: 100vh;
+  height: 100dvh;
+  background: radial-gradient(
+    circle at 50% 42%,
+    #2e2670 0%,
+    #16123f 40%,
+    #07061a 80%
+  );
+}
+.intro-stars {
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 12%, #f4eee3 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 30%, #c9c4ee 50%, transparent 51%),
+    radial-gradient(2px 2px at 37% 8%, #f4eee3 50%, transparent 51%),
+    radial-gradient(1px 1px at 51% 22%, #c9c4ee 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 66% 14%, #f4eee3 50%, transparent 51%),
+    radial-gradient(1px 1px at 79% 34%, #c9c4ee 50%, transparent 51%),
+    radial-gradient(2px 2px at 91% 9%, #ffd9b0 50%, transparent 51%),
+    radial-gradient(1px 1px at 14% 52%, #c9c4ee 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 44% 61%, #f4eee3 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 70%, #c9c4ee 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 88% 58%, #f4eee3 50%, transparent 51%),
+    radial-gradient(1px 1px at 5% 83%, #c9c4ee 50%, transparent 51%),
+    radial-gradient(2px 2px at 30% 92%, #ffd9b0 50%, transparent 51%),
+    radial-gradient(1px 1px at 60% 88%, #c9c4ee 50%, transparent 51%);
+  background-size: 420px 420px;
+  mask-image: radial-gradient(ellipse at center, #000 35%, transparent 100%);
+  opacity: 0.6;
+}
+.intro-robot {
+  width: min(230px, 42dvh);
+}
+.intro-power {
+  border-color: rgb(242 166 90 / 45%);
+  background: rgb(32 27 72 / 70%);
+  animation: power-breathe 2.4s ease-in-out infinite;
+  transition:
+    background-color 600ms ease,
+    color 600ms ease,
+    box-shadow 600ms ease;
+}
+.intro-power[data-powered='true'] {
+  animation: none;
+  background: var(--color-accent-orange);
+  color: var(--color-space-950);
+  box-shadow: 0 0 48px rgb(242 166 90 / 55%);
+}
+.intro-power::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--color-accent-orange);
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+}
+.intro-power[data-powered='true']::after {
+  animation: power-ring 1.6s ease-out both;
+}
+.intro-robot-wake {
+  animation: robot-wake 3.4s ease-in-out both;
+}
+.intro-robot-wake .robot-float {
+  animation-play-state: paused;
+}
+
+@keyframes power-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgb(242 166 90 / 12%);
+    border-color: rgb(242 166 90 / 35%);
+  }
+  50% {
+    box-shadow: 0 0 26px rgb(242 166 90 / 30%);
+    border-color: rgb(242 166 90 / 75%);
+  }
+}
+@keyframes power-ring {
+  from {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.3);
+  }
+}
+@keyframes robot-wake {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(12px) scale(0.98);
+  }
+  75% {
+    transform: translateY(-18px) scale(1.035);
+  }
+  100% {
+    transform: translateY(-8px) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-power,
+  .intro-power::after,
+  .intro-robot-wake {
     animation: none !important;
   }
 }
