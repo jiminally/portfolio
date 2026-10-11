@@ -1,3 +1,4 @@
+import ExplorationLog from '@/sections/ExplorationLog'
 import SpaceHero from '@/sections/SpaceHero'
 import Layout from '@/components/layout/Layout'
 import SkyBackground from '@/components/space/SkyBackground'
@@ -9,22 +10,7 @@ export default function HomePage({ ready = true }: HomePageProps) {
     <SkyBackground>
       <Layout>
         <SpaceHero ready={ready} />
-        <section
-          id="log"
-          tabIndex={-1}
-          aria-labelledby="log-title"
-          className="landing-section min-h-[960px] py-24"
-        >
-          <div className="max-w-2xl rounded-3xl p-8 glass-dark">
-            <p className="mb-6 font-mono text-sm">ALT 120km · 대기권 진입</p>
-            <h2 id="log-title" className="text-4xl sm:text-5xl">
-              탐사 일지
-            </h2>
-            <p className="mt-6">
-              배우고 경험한 이야기가 이곳에 쌓일 예정입니다.
-            </p>
-          </div>
-        </section>
+        <ExplorationLog />
         <section
           id="clouds"
           tabIndex={-1}
