@@ -73,6 +73,12 @@
   #main-content {
     scroll-margin-top: calc(var(--header-height) + 24px);
   }
+
+  /* Programmatic navigation targets must not draw a page-sized focus ring. */
+  #main-content[tabindex='-1']:focus,
+  .landing-section[tabindex='-1']:focus {
+    outline: none;
+  }
 }
 
 /* Override the glass utility to retain contrast over light sections. */
