@@ -17,7 +17,7 @@ export default function Layout({ children }: LayoutProps) {
       <main
         id="main-content"
         tabIndex={-1}
-        className="mx-auto max-w-[1200px] px-6 pt-[var(--header-height)]"
+        className="w-full pt-[var(--header-height)]"
       >
         {children}
       </main>
