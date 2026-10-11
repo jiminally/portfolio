@@ -1,28 +1,14 @@
+import SpaceHero from '@/sections/SpaceHero'
 import Layout from '@/components/layout/Layout'
 import SkyBackground from '@/components/space/SkyBackground'
 
-export default function HomePage() {
+type HomePageProps = { ready?: boolean }
+
+export default function HomePage({ ready = true }: HomePageProps) {
   return (
     <SkyBackground>
       <Layout>
-        <section
-          id="space"
-          tabIndex={-1}
-          aria-labelledby="space-title"
-          className="landing-section min-h-[960px] py-24 text-text-on-dark"
-        >
-          <p className="mb-6 font-mono text-sm text-accent-mint">
-            ALT 400km · 우주
-          </p>
-          <h1 id="space-title" className="max-w-2xl text-5xl sm:text-7xl">
-            오래 떠돌았지만,
-            <br />
-            이제 <span className="text-accent-orange">여기</span>에 내려앉았어요
-          </h1>
-          <p className="mt-8 max-w-lg">
-            우주에서 시작하는 이야기. 첫 인사를 담을 공간입니다.
-          </p>
-        </section>
+        <SpaceHero ready={ready} />
         <section
           id="log"
           tabIndex={-1}
