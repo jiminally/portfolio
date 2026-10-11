@@ -1,4 +1,4 @@
-export type SectionId = 'space' | 'log' | 'clouds' | 'earth'
+export type SectionId = 'space' | 'log' | 'clouds' | 'timeline' | 'earth'
 
 // Replace the scrolling implementation here when Lenis is introduced in #7.
 // CSS owns smooth scrolling and the reduced-motion preference.
