@@ -125,6 +125,87 @@
   }
 }
 
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes robot-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(-10px) scale(1.03);
+  }
+  65% {
+    transform: translateY(2px) scale(0.98);
+  }
+}
+
+@keyframes speech-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@layer components {
+  .robot-svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .robot-svg :is(stop, g, path, circle, ellipse, rect) {
+    transition:
+      stop-color 350ms ease,
+      fill 350ms ease,
+      stroke 350ms ease,
+      opacity 350ms ease;
+  }
+  .robot-float {
+    animation: float 4.8s ease-in-out infinite;
+  }
+  .robot-blink {
+    animation: blink 2.4s ease-in-out infinite;
+  }
+  .robot-bounce {
+    animation: robot-bounce 420ms ease-out;
+  }
+  .speech-pop {
+    animation: speech-pop 240ms ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .robot-float,
+  .robot-blink,
+  .robot-bounce,
+  .speech-pop {
+    animation: none !important;
+  }
+}
+
 /* Unlayered so motion utilities cannot override the accessibility preference. */
 @media (prefers-reduced-motion: reduce) {
   *,
